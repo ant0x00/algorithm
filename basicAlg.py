@@ -61,8 +61,26 @@ def guess_num():
                             print("{0} {1} {2} {3} {4} {5}".format(i5, i5, i5, i5, i5, i5))
 
 
+def convert_num_system2(num, num_system):
+    """也是利用递归算法"""
+    result = ""
+    if num:
+        result = convert_num_system2(num // num_system, num_system)
+        return result + str(num % num_system)
+    else:
+        return result
+
+
+def test_conerver_num_system():
+    input_num = int(input("请输入要转码的数:"))
+    input_system = int(input("请输入想转成的进制数:"))
+    r = convert_num_system2(input_num, input_system)
+    print(r)
+
+
 if __name__ == ('__main__'):
-    test_fact()
+    test_conerver_num_system()
+    # test_fact()
     # guess_num()
     # guess_price()
     # test_fib()
