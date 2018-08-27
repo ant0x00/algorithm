@@ -4,23 +4,23 @@ def buket_sorting(test_list):
     本例子可以处理 -100 到100的数
     """
     # str_input = input("请输入要排序的数字，数之间用空格隔开：")
-    test_list = [x+100 for x in test_list]
+    test_list = [x + 100 for x in test_list]
     input_arr = [0 for x in range(201)]
     for num in test_list:
         input_arr[num] += 1
     for i in range(200):
-        if input_arr[i] > 0: print(i-100)
+        if input_arr[i] > 0: print(i - 100)
 
 
-def selection_sorting(test_list):
+def selection_sorting(test_list):  # 直接选择排序
     n = len(test_list)
-    for i in range(n-1):
+    for i in range(n - 1):
         min = i
-        for j in range(i+1, n):
-            if test_list[j]<test_list[min]: #每一趟找出所有未排序的最小数坐标
+        for j in range(i + 1, n):
+            if test_list[j] < test_list[min]:  # 每一趟找出所有未排序的最小数坐标
                 min = j
-        test_list[i], test_list[min] = test_list[min], test_list[i] #将筛选出的最小数放在已排序数组的最后
-            # print(test_list)
+        test_list[i], test_list[min] = test_list[min], test_list[i]  # 将筛选出的最小数放在已排序数组的最后
+        print(test_list)
     print(test_list)
 
 
@@ -73,10 +73,52 @@ def qsort(arr):
         pivot = arr[0]
         return qsort([x for x in arr[1:] if x < pivot]) + [pivot] + qsort([x for x in arr[1:] if x >= pivot])
 
+
+def insert_sorting(list):  # 插入排序，每趟循环将未排序的第一个新元素插入到已排序的正确位置
+    n = len(list)
+    for i in range(1, n):
+        if list[i] < list[i - 1]:
+            temp = list[i]
+            index = i
+            for j in range(i - 1, -1, -1):
+                if list[j] > temp:
+                    list[j + 1] = list[j]
+                    index = j
+                else:
+                    break
+        list[index] = temp
+        print(list)
+    print(list)
+
+
+# to do
+# 堆排序（基于选择排序）
+# 归并排序
+# 希尔排序（基于插入排序）
+def shell_sort(list):
+    n = len(list)
+    # 初始步长
+    gap = round(n / 2)
+    while gap > 0:
+        for i in range(gap, n):
+            # 每个步长进行插入排序
+            temp = list[i]
+            j = i
+            # 插入排序
+            while j >= gap and list[j - gap] > temp:
+                list[j] = list[j - gap]
+                j -= gap
+            list[j] = temp
+        # 得到新的步长
+        gap = round(gap / 2)
+        print(list)
+    print(list)
+
+
 if __name__ == "__main__":
-    test_list = [26, 19, 27, 80, -9, 17, 37, 25, 18, 93]
+    test_list = [26, 19, 27, 80, -9, 17, 37, 18, 93, 25]
     # print(fast_sorting(test_list))
     # buket_sorting(test_list)
     # bubble_sorting()
-    print(test_list)
-    selection_sorting(test_list)
+    # selection_sorting(test_list)
+    shell_sort(test_list)
