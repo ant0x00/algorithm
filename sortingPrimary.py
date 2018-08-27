@@ -1,11 +1,27 @@
-def buket_sorting():
-    """桶排序，从小到大排列"""
-    str_input = input("请输入要排序的数字，数之间用空格隔开：")
-    input_arr = [0 for x in range(101)]
-    for num in str_input.split():
-        input_arr[int(num)] += 1
-    for i in range(100):
-        if input_arr[i] > 0: print(i)
+def buket_sorting(test_list):
+    """
+    桶排序，从小到大排列
+    本例子可以处理 -100 到100的数
+    """
+    # str_input = input("请输入要排序的数字，数之间用空格隔开：")
+    test_list = [x+100 for x in test_list]
+    input_arr = [0 for x in range(201)]
+    for num in test_list:
+        input_arr[num] += 1
+    for i in range(200):
+        if input_arr[i] > 0: print(i-100)
+
+
+def selection_sorting(test_list):
+    n = len(test_list)
+    for i in range(n-1):
+        min = i
+        for j in range(i+1, n):
+            if test_list[j]<test_list[min]: #每一趟找出所有未排序的最小数坐标
+                min = j
+        test_list[i], test_list[min] = test_list[min], test_list[i] #将筛选出的最小数放在已排序数组的最后
+            # print(test_list)
+    print(test_list)
 
 
 def bubble_sorting():
@@ -43,7 +59,7 @@ def fast_sorting(test_list):
                 more.append(i)
             else:
                 pivotList.append(i)
-        print(more + pivotList + less)
+        print(less + pivotList + more)
         less = fast_sorting(less)
         more = fast_sorting(more)
         return less + pivotList + more
@@ -58,8 +74,9 @@ def qsort(arr):
         return qsort([x for x in arr[1:] if x < pivot]) + [pivot] + qsort([x for x in arr[1:] if x >= pivot])
 
 if __name__ == "__main__":
-    test_list = [26, 19, 27, 80, -9, 17, 37, 25, 18]
-    print(qsort(test_list))
-    # buket_sorting()
+    test_list = [26, 19, 27, 80, -9, 17, 37, 25, 18, 93]
+    # print(fast_sorting(test_list))
+    # buket_sorting(test_list)
     # bubble_sorting()
-    # bubble_sorting()
+    print(test_list)
+    selection_sorting(test_list)
