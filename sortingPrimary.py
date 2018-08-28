@@ -92,13 +92,43 @@ def insert_sorting(list):  # 插入排序，每趟循环将未排序的第一个
 
 
 # to do
-# 堆排序（基于选择排序）
+# 堆排序（基于选择排序）等学完数据结构 堆以后完善
+
 # 归并排序
-# 希尔排序（基于插入排序）
+def merge_sort(lst):  # 此方法来自维基百科：http://zh.wikipedia.org/zh/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F
+    if len(lst) <= 1:
+        return lst
+
+    def merge(left, right):
+        merged = []
+
+        while left and right:
+            merged.append(left.pop(0) if left[0] <= right[0] else right.pop(0))
+
+        while left:
+            merged.append(left.pop(0))
+
+        while right:
+            merged.append(right.pop(0))
+
+        return merged
+    print(lst)
+    middle = int(len(lst) / 2)
+    left = merge_sort(lst[:middle])
+    right = merge_sort(lst[middle:])
+    return merge(left, right)
+
+
 def shell_sort(list):
+    """
+    希尔排序（基于插入排序），递减增量排序算法
+    改进的地方：插入排序在对几乎已经排好序的数据操作时，效率高，即可以达到线性排序的效率
+    但插入排序一般来说是低效的，因为插入排序每次只能将数据移动一位。
+    """
     n = len(list)
     # 初始步长
     gap = round(n / 2)
+    print(gap)
     while gap > 0:
         for i in range(gap, n):
             # 每个步长进行插入排序
@@ -112,6 +142,7 @@ def shell_sort(list):
         # 得到新的步长
         gap = round(gap / 2)
         print(list)
+        print(gap)
     print(list)
 
 
@@ -121,4 +152,6 @@ if __name__ == "__main__":
     # buket_sorting(test_list)
     # bubble_sorting()
     # selection_sorting(test_list)
-    shell_sort(test_list)
+    print(merge_sort(test_list))
+    # import timeit #统计函数执行时间
+    # print(timeit.timeit("bubble_sorting", setup="from __main__ import bubble_sorting",number=1000))
