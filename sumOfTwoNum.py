@@ -1,5 +1,5 @@
-nums = [3,2,4]
-target = 6
+nums = [3,2,4,5]
+target = 7
 
 
 def two_sum(nums, target):
