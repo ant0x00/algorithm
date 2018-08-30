@@ -112,6 +112,7 @@ def merge_sort(lst):  # 此方法来自维基百科：http://zh.wikipedia.org/zh
             merged.append(right.pop(0))
 
         return merged
+
     print(lst)
     middle = int(len(lst) / 2)
     left = merge_sort(lst[:middle])
@@ -146,12 +147,74 @@ def shell_sort(list):
     print(list)
 
 
+def qsort2(alist, l, u):  # 单索引快排one index for partion
+    print(alist)
+    if l >= u:
+        return
+
+    m = l
+    for i in range(l + 1, u):
+        if alist[i] < alist[l]:
+            m += 1
+            alist[m], alist[i] = alist[i], alist[m]
+            # print(alist)
+    # swap between m and l after partition, important!
+    alist[m], alist[l] = alist[l], alist[m]
+    print(m)
+
+    qsort2(alist, l, m)
+    qsort2(alist, m + 1, u + 1)
+    return alist
+
+
+def qsort3(arr, lower, upper):
+    if lower >= upper: return
+    pivot = arr[lower]
+    left, right = lower + 1, upper
+    while left <= right:
+        while left <= right and arr[left] < pivot:
+            left += 1
+        while left <= right and arr[right] >= pivot:
+            right -= 1
+        if left > right:
+            break
+        arr[left], arr[right] = arr[right], arr[left]
+    arr[lower], arr[right] = arr[right], arr[lower]
+    qsort3(arr, lower, right - 1)
+    qsort3(arr, right + 1, upper)
+    return arr
+
+
+def qsort4(alist, lower, upper):
+    print(alist)
+    if lower >= upper:
+        return
+
+    pivot = alist[lower]
+    left, right = lower + 1, upper
+    while left <= right:
+        while left <= right and alist[left] < pivot:
+            left += 1
+        while left <= right and alist[right] >= pivot:
+            right -= 1
+        if left > right:
+            break
+        # swap while left <= right
+        alist[left], alist[right] = alist[right], alist[left]
+    # swap the smaller with pivot
+    alist[lower], alist[right] = alist[right], alist[lower]
+
+    qsort4(alist, lower, right - 1)
+    qsort4(alist, right + 1, upper)
+
+
 if __name__ == "__main__":
-    test_list = [26, 19, 27, 80, -9, 17, 37, 18, 93, 25]
+    test_list = [26, 101, 27, 80, -9, 17, 37, 18, 93, 25]
+
     # print(fast_sorting(test_list))
     # buket_sorting(test_list)
     # bubble_sorting()
     # selection_sorting(test_list)
-    print(merge_sort(test_list))
+    print(qsort3(test_list, 0, len(test_list) - 1))
     # import timeit #统计函数执行时间
     # print(timeit.timeit("bubble_sorting", setup="from __main__ import bubble_sorting",number=1000))
