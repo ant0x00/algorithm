@@ -10,7 +10,8 @@ def buket_sorting(test_list):
         input_arr[num] += 1
     for i in range(200):
         if input_arr[i] > 0: print(i - 100)
-
+def buket_sorting_optimize(list):#桶排序也可以进行优化，达到不牺牲时间复杂度，但减少空间复杂度的目的
+    pass
 
 def selection_sorting(test_list):  # 直接选择排序
     n = len(test_list)
