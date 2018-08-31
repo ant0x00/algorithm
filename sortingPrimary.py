@@ -148,12 +148,11 @@ def shell_sort(list):
 
 
 def qsort2(alist, l, u):  # 单索引快排one index for partion
-    print(alist)
     if l >= u:
         return
 
     m = l
-    for i in range(l + 1, u):
+    for i in range(l + 1, u + 1):
         if alist[i] < alist[l]:
             m += 1
             alist[m], alist[i] = alist[i], alist[m]
@@ -161,9 +160,10 @@ def qsort2(alist, l, u):  # 单索引快排one index for partion
     # swap between m and l after partition, important!
     alist[m], alist[l] = alist[l], alist[m]
     print(m)
+    print(alist)
 
-    qsort2(alist, l, m)
-    qsort2(alist, m + 1, u + 1)
+    qsort2(alist, l, m - 1)
+    qsort2(alist, m + 1, u)
     return alist
 
 
@@ -179,7 +179,10 @@ def qsort3(arr, lower, upper):
         if left > right:
             break
         arr[left], arr[right] = arr[right], arr[left]
+        print(arr)
     arr[lower], arr[right] = arr[right], arr[lower]
+    print(f"{left}:{right}")
+    print(arr)
     qsort3(arr, lower, right - 1)
     qsort3(arr, right + 1, upper)
     return arr
