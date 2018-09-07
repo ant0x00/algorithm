@@ -7,7 +7,6 @@ class Node(object):
         - 单项链表
         -
     """
-
     def __init__(self, initdata):
         self.data = initdata
         # 引用None代表没有下一节点
@@ -90,14 +89,15 @@ class Queue:
     def is_empty(self):
         return self.items == []
 
-    def enqueue(self, item):
+    def enqueue(self, item):  # 进队
         self.items.insert(0, item)
 
-    def dequeue(self):
+    def dequeue(self):  # 出队
         return self.items.pop()
 
     def size(self):
         return len(self.items)
+
 
 def test_queue():
     q = Queue()
@@ -111,6 +111,22 @@ def test_queue():
     q.enqueue('dog')
     q.enqueue(True)
 
+
+def quick_queue():
+    from collections import deque
+    queue = deque(["Eric", "John", "Michael"])
+    print(queue)
+    queue.append("Terry")  # Terry arrives
+    print(queue)
+    queue.append("Graham")  # Graham arrives
+    print(queue)
+    queue.popleft()  # The first to arrive now leaves
+    print(queue)
+    queue.popleft()  # The second to arrive now leaves
+    print(queue)
+
+
 if __name__ == "__main__":
     # stack_deque()
-    test_queue()
+    # test_queue()
+    quick_queue()
