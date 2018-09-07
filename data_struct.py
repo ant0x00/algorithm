@@ -54,7 +54,8 @@ class Stack:
     def size(self):
         return len(self.items)
 
-if __name__ == "__main__":
+
+def test_stack():
     s = Stack()
     print(s.isEmpty())
     s.push("第一个元素")
@@ -66,3 +67,50 @@ if __name__ == "__main__":
     print(s.pop())
     print(s.pop())
     print(s.size())
+
+
+def stack_deque():
+    import collections
+    stack = collections.deque()
+    print(len(stack))
+    stack.append("first in")
+    print(stack[-1])
+    stack.append("second in")
+    print(stack[-1])
+    print(len(stack))
+    print(stack.pop())
+
+
+class Queue:
+    """模拟队列"""
+
+    def __init__(self):
+        self.items = []
+
+    def is_empty(self):
+        return self.items == []
+
+    def enqueue(self, item):
+        self.items.insert(0, item)
+
+    def dequeue(self):
+        return self.items.pop()
+
+    def size(self):
+        return len(self.items)
+
+def test_queue():
+    q = Queue()
+    print(q.is_empty())
+    q.enqueue('dog')
+    q.enqueue(4)
+    print(q)
+    q = Queue()
+    print(q.is_empty())
+    q.enqueue(4)
+    q.enqueue('dog')
+    q.enqueue(True)
+
+if __name__ == "__main__":
+    # stack_deque()
+    test_queue()
