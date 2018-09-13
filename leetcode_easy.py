@@ -38,7 +38,23 @@ def romanToInt(s):
     return ans
 
 
+def longestCommonPrefix(strs):
+    if not strs:
+        return ""
+    strs.sort(key=len)
+    shortest_str = strs[0]
+    max_prefix = len(shortest_str)
+    for i in range(max_prefix):
+        for one_str in strs:
+            if one_str[i] != shortest_str[i]:
+                return shortest_str[:i]
+                break
+    return shortest_str
+
+
+
 if __name__ == '__main__':
     # print(reverse(-3210))
     # print(is_palindrome_number(121))
-    print(romanToInt("LVIII"))
+    # print(romanToInt("LVIII"))
+    print(longestCommonPrefix(["abca","aba","aaab"]))
