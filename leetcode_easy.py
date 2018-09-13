@@ -23,6 +23,22 @@ def is_palindrome_number(x):
     return x == reverse_number or x == reverse_number // 10
 
 
+def romanToInt(s):
+    # https://leetcode-cn.com/problems/roman-to-integer/description/
+    roman_dict = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
+    ans = 0
+    for i in range(len(s) - 1):
+        c = s[i]
+        cafter = s[i + 1]
+        if roman_dict[c] < roman_dict[cafter]:
+            ans = ans - roman_dict[c]
+        else:
+            ans = roman_dict[c] + ans
+    ans += roman_dict[s[-1]]
+    return ans
+
+
 if __name__ == '__main__':
     # print(reverse(-3210))
-    print(is_palindrome_number(121))
+    # print(is_palindrome_number(121))
+    print(romanToInt("LVIII"))
