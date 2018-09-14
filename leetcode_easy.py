@@ -17,7 +17,7 @@ def reverse(x):
         ans = ans * 10 + x % 10
         x //= 10
         # x = int(x/10)
-    return sign * ans if ans <= 0x7fffffff else 0 #0x7fffffff=2**32-1
+    return sign * ans if ans <= 0x7fffffff else 0  # 0x7fffffff=2**32-1
 
 
 def is_palindrome_number(x):
@@ -60,8 +60,8 @@ def longestCommonPrefix(strs):
         for one_str in strs:
             if one_str[i] != shortest_str[i]:
                 return shortest_str[:i]
-                break
     return shortest_str
+
 
 def longestCommonPrefix_use_zip(strs):
     """
@@ -77,8 +77,32 @@ def longestCommonPrefix_use_zip(strs):
             prefix += item[0]
     return prefix
 
+
+def isValid(str):
+    """
+    :type s: str
+    :rtype: bool
+    有效的括号:https://leetcode-cn.com/problems/valid-parentheses/description/
+    """
+    from collections import deque
+    d = {'(': ')', '[': ']', '{': '}'}
+    stack = deque()
+    for s in str:
+        if s in d:
+            stack.append(s)
+        elif s in d.values():
+            if len(stack) == 0:
+                return False
+            if s == d[stack[-1]]:
+                stack.pop()
+            else:
+                return False
+    return len(stack) == 0
+
+
 if __name__ == '__main__':
     # print(reverse(-3210))
     # print(is_palindrome_number(121))
     # print(romanToInt("LVIII"))
-    print(longestCommonPrefix_use_zip(["abca", "aba", "abab"]))
+    # print(longestCommonPrefix_use_zip(["abca", "aba", "abab"]))
+    print(isValid("(r)"))
