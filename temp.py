@@ -10,6 +10,7 @@ class ListNode:
         self.next = None
 
 def stringToIntegerList(input):
+    print(json.loads(input))
     return json.loads(input)
 
 
