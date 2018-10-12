@@ -22,14 +22,14 @@ class Solution:
             if j > max_num:
                 max_num = j
                 max_index = i
-        if len(nums)==1:
-            return max_index and max_num<<1==max_num
-        elif max(nums[:max_index]+nums[max_index+1:])>>1 <= max_num:
+        if len(nums) == 1:
+            return max_index and max_num << 1 == max_num
+        elif max(nums[:max_index] + nums[max_index + 1:]) >> 1 <= max_num:
             return max_index
         return -1
 
     def dominantIndex2(self, nums):
-        #优化解决
+        # 优化解决
         if not nums:
             return -1
         maxn = max(nums)
@@ -37,6 +37,7 @@ class Solution:
             if maxn < 2 * item and maxn != item:
                 return -1
         return nums.index(maxn)
+
 
 def stringToIntegerList(input):
     return json.loads(input)
