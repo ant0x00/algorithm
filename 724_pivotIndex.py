@@ -31,7 +31,7 @@ class Solution:
         res = sum(nums)
         lsum = 0
         for i, j in enumerate(nums):
-            if lsum * 2 + j == res:
+            if (lsum << 1) + j == res:
                 return i
             lsum += j
         return -1
