@@ -1,6 +1,7 @@
 # coding: utf-8
 import json
 
+
 # https://leetcode-cn.com/problems/array-partition-i/description/
 class Solution:
     def arrayPairSum(self, nums):
@@ -12,7 +13,7 @@ class Solution:
         # sums = 0
         # for x in sort_nums[::2]:
         #     sums+=x
-        return sum([x for x in sorted(nums)[::2]])
+        return sum(sorted(nums)[::2])
 
 
 def stringToIntegerList(input):
