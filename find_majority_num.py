@@ -16,6 +16,8 @@ def condidate(m, A):
 
 
 def majority(A):
+    if not A:
+        return None
     c = condidate(0, A)
     count = 0
     for i in range(len(A)):
@@ -28,6 +30,6 @@ def majority(A):
 
 
 if __name__ == '__main__':
-    data = [1,2,1,2]
+    data = []
     result = majority(data)
     print(result)

@@ -7,6 +7,7 @@ class Solution:
         """
         :type nums: List[int]
         :rtype: int
+        思路：使用快慢指针
         """
         if len(nums) <= 1:
             return len(nums)
