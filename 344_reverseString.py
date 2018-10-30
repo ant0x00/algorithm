@@ -17,6 +17,12 @@ class Solution:
             right -= 1
         return ''.join(s)
 
+    def reverseString3(self, s):
+        if len(s) <= 1:
+            return s
+        else:
+            return s[-1]+ self.reverseString3(s[:-1])
+
     def reverseString2(self, s):
         """
         :type s: str
@@ -42,7 +48,7 @@ def main():
             line = next(lines)
             s = stringToString(line);
 
-            ret = Solution().reverseString(s)
+            ret = Solution().reverseString3(s)
 
             out = (ret);
             print(out)
