@@ -152,7 +152,7 @@ def shell_sort(list):
     print(list)
 
 
-def qsort2(alist, l, u):  # 单索引快排one index for partion
+def qsort2(alist, l, u):  # 单索引原地快排one index for partion
     if l >= u:
         return
 
@@ -193,7 +193,7 @@ def qsort3(arr, lower, upper):
     return arr
 
 
-def qsort4(alist, lower, upper):
+def qsort4(alist, lower, upper):# 双索引原地快排two index for partion
     print(alist)
     if lower >= upper:
         return

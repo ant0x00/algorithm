@@ -1,5 +1,11 @@
 # coding:utf-8
-
+'''
+4. Dijkstras's算法，寻找最短路径,核心思想
+- 找到最便宜的结点
+- 更新该节点邻居的开销
+- 重复该过程，直到对图中每个节点都如此操作
+- 计算最终路径
+'''
 graph = {}
 graph["start"] = {}
 graph["start"]["a"] = 6
@@ -14,7 +20,7 @@ graph["b"]["fin"] = 5
 
 graph["fin"] = {}
 
-# the costs table
+# the costs table 节点开销:从start到该节点所需要的时间
 infinity = float("inf")
 costs = {}
 costs["a"] = 6
@@ -49,7 +55,7 @@ while node is not None:
     cost = costs[node]
     # Go through all the neighbors of this node.
     neighbors = graph[node]
-    for n in neighbors.keys():
+    for n in neighbors:
         new_cost = cost + neighbors[n]
         # If it's cheaper to get to this neighbor by going through this node...
         if costs[n] > new_cost:
