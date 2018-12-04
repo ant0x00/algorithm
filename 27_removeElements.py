@@ -16,6 +16,23 @@ class Solution:
                 begin += 1
         return begin
 
+    def removeElement2(self, nums, val):
+        """
+        :type nums: List[int]
+        :type val: int
+        :rtype: int
+        """
+        n = len(nums)
+        slow = fast = 0
+        while fast < n:
+            if nums[fast] == val:
+                fast += 1
+            else:
+                nums[slow] = nums[fast]
+                slow += 1
+                fast += 1
+        print(slow)
+        return slow
 
 def stringToIntegerList(input):
     return json.loads(input)
@@ -42,7 +59,7 @@ def main():
             line = next(lines)
             val = int(line)
 
-            ret = Solution().removeElement(nums, val)
+            ret = Solution().removeElement2(nums, val)
 
             out = integerListToString(nums, len_of_list=ret)
             print(out)
