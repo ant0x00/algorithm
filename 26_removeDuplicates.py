@@ -14,8 +14,9 @@ class Solution:
         begin = 0
         for i in range(1, len(nums)):
             if nums[i] != nums[begin]:
+                if begin+1 != i:
+                    nums[begin+1] = nums[i]
                 begin += 1
-                nums[begin] = nums[i]
         return begin + 1
 
         # if len(nums) <= 1:
