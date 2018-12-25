@@ -34,6 +34,22 @@ class Solution:
         print(slow)
         return slow
 
+    def removeElement3(self, nums, val):
+        """
+        :type nums: List[int]
+        :type val: int
+        :rtype: int
+        """
+        n = len(nums)
+        index = 0
+        while index < n:
+            if nums[index] == val:
+                nums[index]=nums[n-1]
+                n -= 1
+            else:
+                index += 1
+        return n
+
 def stringToIntegerList(input):
     return json.loads(input)
 
@@ -59,7 +75,7 @@ def main():
             line = next(lines)
             val = int(line)
 
-            ret = Solution().removeElement2(nums, val)
+            ret = Solution().removeElement3(nums, val)
 
             out = integerListToString(nums, len_of_list=ret)
             print(out)
