@@ -19,12 +19,12 @@ class Solution:
         n = len(nums)
         if k > n - 1:
             return
-        index = self.quick_sort(nums, 0, n, k)
+        index = self.quick_sort(nums, 0, n-1, k)
         return nums[index]
 
     def quick_sort(self, nums, begin, end, k):
         left = begin
-        right = end - 1
+        right = end
         if left >= right:
             return left
         pos = self.partion(nums, left, right)
@@ -36,7 +36,20 @@ class Solution:
             return self.quick_sort(nums, pos + 1, right, k)
 
     def partion(self, nums, begin, end):
-        pass
+        priot = nums[begin]
+        left, right = begin + 1, end - 1
+        while left <= right:
+            while left <= right and nums[right] > priot:
+                right -= 1
+            while left <= right and nums[left] <= priot:
+                left += 1
+            if left > right:
+                break
+            nums[left], nums[right] = nums[right], nums[left]
+        # print(nums, left, right)
+        nums[right], nums[begin] = nums[begin], nums[right]
+        # print(nums)
+        return right
 
 
 def stringToIntegerList(input):
