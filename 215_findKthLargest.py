@@ -5,7 +5,7 @@ import json
 # https://leetcode-cn.com/problems/kth-largest-element-in-an-array/
 
 class Solution:
-    def findKthLargest(self, nums, k):
+    def findKthLargest2(self, nums, k):
         """
         :type nums: List[int]
         :type k: int
@@ -15,9 +15,9 @@ class Solution:
         """
         return sorted(nums, reverse=True)[k - 1]
 
-    def findKthLargest_DC(self, nums, k):
+    def findKthLargest(self, nums, k):
         n = len(nums)
-        if k > n - 1:
+        if k > n :
             return
         index = self.quick_sort(nums, 0, n-1, k)
         return nums[index]
@@ -33,7 +33,7 @@ class Solution:
         elif k < pos + 1:
             return self.quick_sort(nums, begin, pos - 1, k)
         else:
-            return self.quick_sort(nums, pos + 1, right, k)
+            return self.quick_sort(nums, pos + 1, end, k)
 
     def partion(self, nums, begin, end):
         priot = nums[begin]
@@ -51,6 +51,54 @@ class Solution:
         # print(nums)
         return right
 
+
+class Solution2:
+    # 采用快速排序方法，分成的数列左边大于右边
+    def findKthLargest(self, nums, k):
+        n = len(nums)
+        if (k > n):
+            return
+        index = self.quickSort(nums, 0, n - 1, k)
+        return nums[index]
+
+    def quickSort(self, nums, l, r, k):
+        if l >= r:
+            return l
+        p = self.partition(nums, l, r)
+        if p + 1 == k:
+            return p
+        if p + 1 > k:
+            return self.quickSort(nums, l, p - 1, k)
+        else:
+            return self.quickSort(nums, p + 1, r, k)
+
+    def partition(self, nums, begin, end):
+        priot = nums[begin]
+        left, right = begin + 1, end - 1
+        while left <= right:
+            while left <= right and nums[right] > priot:
+                right -= 1
+            while left <= right and nums[left] <= priot:
+                left += 1
+            if left > right:
+                break
+            nums[left], nums[right] = nums[right], nums[left]
+        # print(nums, left, right)
+        nums[right], nums[begin] = nums[begin], nums[right]
+        # print(nums)
+        return right
+
+    def partition2(self, nums, l, r):
+        v = nums[l]
+        j = l
+        i = l + 1
+        while i <= r:
+            if nums[i] >= v:
+                nums[j + 1], nums[i] = nums[i], nums[j + 1]
+                j += 1
+            i += 1
+        nums[l], nums[j] = nums[j], nums[l]
+        return j
 
 def stringToIntegerList(input):
     return json.loads(input)
@@ -71,7 +119,7 @@ def main():
             line = next(lines)
             k = int(line)
 
-            ret = Solution().findKthLargest(nums, k)
+            ret = Solution2().findKthLargest(nums, k)
 
             out = str(ret)
             print(out)
