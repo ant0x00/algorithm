@@ -57,8 +57,9 @@ class Solution2:
     def findKthLargest(self, nums, k):
         n = len(nums)
         if (k > n):
-            return
-        index = self.quickSort(nums, 0, n - 1, k)
+            return k
+        index = self.quickSort(nums, 0, n, k)
+        print(index, nums)
         return nums[index]
 
     def quickSort(self, nums, l, r, k):
@@ -68,7 +69,7 @@ class Solution2:
         if p + 1 == k:
             return p
         if p + 1 > k:
-            return self.quickSort(nums, l, p - 1, k)
+            return self.quickSort(nums, l, p, k)
         else:
             return self.quickSort(nums, p + 1, r, k)
 
@@ -76,9 +77,9 @@ class Solution2:
         priot = nums[begin]
         left, right = begin + 1, end - 1
         while left <= right:
-            while left <= right and nums[right] > priot:
+            while left <= right and nums[right] < priot:
                 right -= 1
-            while left <= right and nums[left] <= priot:
+            while left <= right and nums[left] >= priot:
                 left += 1
             if left > right:
                 break
