@@ -110,7 +110,7 @@ class Solution3:
         self.bfs(grid, i, j + 1, m, n)
 
 
-class Solution4:
+class Solution4: # 使用BFS方法，利用队列先进先出的特性
     def numIslands(self, grid):
         """
         :type grid: List[List[str]]
