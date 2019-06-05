@@ -17,18 +17,6 @@ def buket_sorting_optimize(list):
     pass
 
 
-def selection_sorting(test_list):  # 直接选择排序
-    n = len(test_list)
-    for i in range(n - 1):
-        min = i
-        for j in range(i + 1, n):
-            if test_list[j] < test_list[min]:  # 每一趟找出所有未排序的最小数坐标
-                min = j
-        test_list[i], test_list[min] = test_list[min], test_list[i]  # 将筛选出的最小数放在已排序数组的最后
-        print(test_list)
-    print(test_list)
-
-
 def bubble_sorting():
     """
     冒泡排序：
@@ -42,6 +30,18 @@ def bubble_sorting():
             if num_arr[j] > num_arr[j + 1]:
                 num_arr[j], num_arr[j + 1] = num_arr[j + 1], num_arr[j]
         print(num_arr)
+
+
+def selection_sorting(test_list):  # 直接选择排序
+    n = len(test_list)
+    for i in range(n - 1):
+        min = i
+        for j in range(i + 1, n):
+            if test_list[j] < test_list[min]:  # 每一趟找出所有未排序的最小数下标
+                min = j
+        test_list[i], test_list[min] = test_list[min], test_list[i]  # 将筛选出的最小数放在已排序数组的最后
+        print(test_list)
+    print(test_list)
 
 
 def fast_sorting(test_list):
@@ -193,7 +193,7 @@ def qsort3(arr, lower, upper):
     return arr
 
 
-def qsort4(alist, lower, upper):# 双索引原地快排two index for partion
+def qsort4(alist, lower, upper):  # 双索引原地快排two index for partion
     print(alist)
     if lower >= upper:
         return
