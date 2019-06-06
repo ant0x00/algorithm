@@ -119,7 +119,7 @@ def merge_sort(lst):  # 此方法来自维基百科：http://zh.wikipedia.org/zh
         return merged
 
     print(lst)
-    middle = int(len(lst) / 2)
+    middle = len(lst) // 2
     left = merge_sort(lst[:middle])
     right = merge_sort(lst[middle:])
     return merge(left, right)
@@ -218,11 +218,11 @@ def qsort4(alist, lower, upper):  # 双索引原地快排two index for partion
 
 if __name__ == "__main__":
     test_list = [26, 101, 27, 80, -9, 17, 37, 18, 93, 25]
-
+    print(merge_sort(test_list))
     # print(fast_sorting(test_list))
     # buket_sorting(test_list)
     # bubble_sorting()
     # selection_sorting(test_list)
-    print(qsort3(test_list, 0, len(test_list) - 1))
+    # print(qsort3(test_list, 0, len(test_list) - 1))
     # import timeit #统计函数执行时间
     # print(timeit.timeit("bubble_sorting", setup="from __main__ import bubble_sorting",number=1000))
