@@ -94,7 +94,7 @@ def insert_sorting(list):  # 插入排序，每趟循环将未排序的第一个
                     break
         list[index] = temp #将要插入的数字放到正确的位置
         print(list)
-    print(list)
+    print(list) 
 
 
 # to do
