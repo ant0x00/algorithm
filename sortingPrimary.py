@@ -87,18 +87,19 @@ def insert_sorting(list):  # 插入排序，每趟循环将未排序的第一个
             temp = list[i]
             index = i
             for j in range(i - 1, -1, -1): #依次比较已排序的数字，遇到比temp小的或者已到头，break
-                if list[j] > temp:
+                if temp < list[j]:
                     list[j + 1] = list[j]
                     index = j
                 else:
                     break
         list[index] = temp #将要插入的数字放到正确的位置
         print(list)
-    print(list) 
+    print(list)
 
 
 # to do
 # 堆排序（基于选择排序）等学完数据结构 堆以后完善
+
 
 # 归并排序
 def merge_sort(lst):  # 此方法来自维基百科：http://zh.wikipedia.org/zh/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F
