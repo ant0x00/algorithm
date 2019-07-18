@@ -28,19 +28,19 @@ def bubble_sorting():
     for i in range(len(num_arr) - 1):  # 决定排序的轮次，需要 n-1 轮
         for j in range(len(num_arr) - i - 1):  # 决定每轮要比较的次数，第 1 轮需要比较 n-1 次，2 轮需要 n-2，最后需要 1 次
             # 所以，时间复杂度为(n-1)*(n-2)*...* 1 = pow(n,2)
-            if num_arr[j] > num_arr[j + 1]:
+            if num_arr[j + 1] < num_arr[j]: #将最大的数冒出来，放到已排序数组的头部
                 num_arr[j], num_arr[j + 1] = num_arr[j + 1], num_arr[j]
         print(num_arr)
 
 
 def selection_sorting(test_list):  # 直接选择排序
     n = len(test_list)
-    for i in range(n - 1): #比较轮次，和冒泡一样，需要n-1轮
+    for i in range(n - 1):  # 比较轮次，和冒泡一样，需要n-1轮
         min = i
         for j in range(i + 1, n):
             if test_list[j] < test_list[min]:  # 每一趟找出所有未排序的最小数下标
                 min = j
-        test_list[i], test_list[min] = test_list[min], test_list[i]  # 将筛选出的最小数放在已排序数组的最后,只比较1次
+        test_list[i], test_list[min] = test_list[min], test_list[i]  # 将筛选出的最小数放在已排序数组的最后,只交换1次
         print(test_list)
     print(test_list)
 
@@ -83,16 +83,16 @@ def qsort(arr):
 def insert_sorting(list):  # 插入排序，每趟循环将未排序的第一个新元素插入到已排序的正确位置
     n = len(list)
     for i in range(1, n):
-        if list[i] < list[i - 1]: #取出尚未排序的左端数字与已排序的左边数字比较，如果左边数字较大，交换
+        if list[i - 1] > list[i]:  # 取出尚未排序的左端数字与已排序的左边数字比较，如果左边数字较大，交换
             temp = list[i]
             index = i
-            for j in range(i - 1, -1, -1): #依次比较已排序的数字，遇到比temp小的或者已到头，break
+            for j in range(i - 1, -1, -1):  # 依次比较已排序的数字，遇到比temp小的或者已到头，break
                 if temp < list[j]:
                     list[j + 1] = list[j]
                     index = j
                 else:
                     break
-        list[index] = temp #将要插入的数字放到正确的位置
+        list[index] = temp  # 将要插入的数字放到正确的位置
         print(list)
     print(list)
 
@@ -110,6 +110,7 @@ def merge_sort(lst):  # 此方法来自维基百科：http://zh.wikipedia.org/zh
         merged = []
 
         while left and right:
+            # 比较两个列表第一位元素，谁小取谁
             merged.append(left.pop(0) if left[0] <= right[0] else right.pop(0))
 
         while left:
@@ -120,7 +121,7 @@ def merge_sort(lst):  # 此方法来自维基百科：http://zh.wikipedia.org/zh
 
         return merged
 
-    print(lst)
+    # print(lst)
     middle = len(lst) // 2
     left = merge_sort(lst[:middle])
     right = merge_sort(lst[middle:])
