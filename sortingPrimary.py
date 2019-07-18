@@ -45,41 +45,6 @@ def selection_sorting(test_list):  # 直接选择排序
     print(test_list)
 
 
-def fast_sorting(test_list):
-    """
-    快速排序：
-    思路：找一个基准元素N，然后先从右往左找第一个小于N的元素S，再由左往右找大于N的元素L，将S和L对调，再寻找，重复对调
-          知道左右的坐标相遇，然后和N对调，递归。
-    """
-    less = []
-    pivotList = []
-    more = []
-    if len(test_list) <= 1:
-        return test_list
-    else:
-        pivot = test_list[0]
-        for i in test_list:
-            if i < pivot:
-                less.append(i)
-            elif i > pivot:
-                more.append(i)
-            else:
-                pivotList.append(i)
-        print(less + pivotList + more)
-        less = fast_sorting(less)
-        more = fast_sorting(more)
-        return less + pivotList + more
-
-
-def qsort(arr):
-    """快排更简洁的写法"""
-    if len(arr) <= 1:
-        return arr
-    else:
-        pivot = arr[0]
-        return qsort([x for x in arr[1:] if x < pivot]) + [pivot] + qsort([x for x in arr[1:] if x >= pivot])
-
-
 def insert_sorting(list):  # 插入排序，每趟循环将未排序的第一个新元素插入到已排序的正确位置
     n = len(list)
     for i in range(1, n):
@@ -153,6 +118,41 @@ def shell_sort(list):
         print(list)
         print(gap)
     print(list)
+
+
+def fast_sorting(test_list):
+    """
+    快速排序：
+    思路：找一个基准元素N，然后先从右往左找第一个小于N的元素S，再由左往右找大于N的元素L，将S和L对调，再寻找，重复对调
+          知道左右的坐标相遇，然后和N对调，递归。
+    """
+    less = []
+    pivotList = []
+    more = []
+    if len(test_list) <= 1:
+        return test_list
+    else:
+        pivot = test_list[0]
+        for i in test_list:
+            if i < pivot:
+                less.append(i)
+            elif i > pivot:
+                more.append(i)
+            else:
+                pivotList.append(i)
+        print(less + pivotList + more)
+        less = fast_sorting(less)
+        more = fast_sorting(more)
+        return less + pivotList + more
+
+
+def qsort(arr):
+    """快排更简洁的写法"""
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[0]
+        return qsort([x for x in arr[1:] if x < pivot]) + [pivot] + qsort([x for x in arr[1:] if x >= pivot])
 
 
 def qsort2(alist, l, u):  # 单索引原地快排one index for partion
