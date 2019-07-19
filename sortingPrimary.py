@@ -41,14 +41,14 @@ def selection_sorting(test_list):  # 直接选择排序
             if test_list[j] < test_list[min]:  # 每一趟找出所有未排序的最小数下标
                 min = j
         test_list[i], test_list[min] = test_list[min], test_list[i]  # 将筛选出的最小数放在已排序数组的最后,只交换1次
-        print(test_list)
+        # print(test_list)
     print(test_list)
 
 
 def insert_sorting(list):  # 插入排序，每趟循环将未排序的第一个新元素插入到已排序的正确位置
     n = len(list)
     for i in range(1, n):
-        if list[i - 1] > list[i]:  # 取出尚未排序的左端数字与已排序的左边数字比较，如果左边数字较大，交换
+        if list[i] < list[i - 1] :  # 取出尚未排序的左端数字与已排序的左边数字比较，如果左边数字较大，交换
             temp = list[i]
             index = i
             for j in range(i - 1, -1, -1):  # 依次比较已排序的数字，遇到比temp小的或者已到头，break
@@ -57,8 +57,8 @@ def insert_sorting(list):  # 插入排序，每趟循环将未排序的第一个
                     index = j
                 else:
                     break
-        list[index] = temp  # 将要插入的数字放到正确的位置
-        print(list)
+            list[index] = temp  # 将要插入的数字放到正确的位置
+        # print(list)
     print(list)
 
 
@@ -221,6 +221,7 @@ def qsort4(alist, lower, upper):  # 双索引原地快排two index for partion
 
 if __name__ == "__main__":
     test_list = [26, 101, 27, 80, -9, 17, 37, 18, 93, 25]
+    test_list1 = [1,2,3,4,5]
     print(merge_sort(test_list))
     # print(fast_sorting(test_list))
     # buket_sorting(test_list)
@@ -229,3 +230,4 @@ if __name__ == "__main__":
     # print(qsort3(test_list, 0, len(test_list) - 1))
     # import timeit #统计函数执行时间
     # print(timeit.timeit("bubble_sorting", setup="from __main__ import bubble_sorting",number=1000))
+    insert_sorting(test_list)
