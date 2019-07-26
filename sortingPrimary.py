@@ -30,8 +30,36 @@ def bubble_sorting():
         # i 也可以理解为已经有 i 个数已排序
         for j in range(len(num_arr) - 1 - i):
             # 所以，时间复杂度为(n-1)*(n-2)*...* 1 = pow(n,2)
-            if num_arr[j + 1] < num_arr[j]: #将最大的数冒出来，放到已排序数组的头部
+            if num_arr[j + 1] < num_arr[j]:  # 将最大的数冒出来，放到已排序数组的头部
                 num_arr[j], num_arr[j + 1] = num_arr[j + 1], num_arr[j]
+        print(num_arr)
+
+
+def bubble_sorting_optimize(num_arr):
+    """
+    冒泡排序：
+    思路：每次比较相邻的元素，如果顺序错误就交换过来
+    测试用数据： 26 19 27 80 -9 17 37 25 18
+    """
+    len_num = len(num_arr)
+    pos = 0
+    endindex = len_num - 1
+    for i in range(len_num - 1):  # 决定排序的轮次，需要 n-1 轮
+        flag = True
+        # 决定每轮要比较的次数，第 1 轮需要比较 n-1 次，2 轮需要 n-2，最后需要 1 次
+        # i 也可以理解为已经有 i 个数已排序
+        for j in range(0, endindex):
+            # 所以，时间复杂度为(n-1)*(n-2)*...* 1 = pow(n,2)
+            x = num_arr[j + 1]
+            y = num_arr[j]
+            if num_arr[j] > num_arr[j + 1]:  # 将最大的数冒出来，放到已排序数组的头部
+                num_arr[j], num_arr[j + 1] = num_arr[j + 1], num_arr[j]
+                flag = False
+                pos = j
+        endindex = pos
+        print(endindex)
+        if flag:
+            break
         print(num_arr)
 
 
@@ -50,7 +78,7 @@ def selection_sorting(test_list):  # 直接选择排序
 def insert_sorting(list):  # 插入排序，每趟循环将未排序的第一个新元素插入到已排序的正确位置
     n = len(list)
     for i in range(1, n):
-        if list[i] < list[i - 1] :  # 取出尚未排序的左端数字与已排序的左边数字比较，如果左边数字较大，交换
+        if list[i] < list[i - 1]:  # 取出尚未排序的左端数字与已排序的左边数字比较，如果左边数字较大，交换
             temp = list[i]
             index = i
             for j in range(i - 1, -1, -1):  # 依次比较已排序的数字，遇到比temp小的或者已到头，break
@@ -222,9 +250,10 @@ def qsort4(alist, lower, upper):  # 双索引原地快排two index for partion
 
 
 if __name__ == "__main__":
-    test_list = [26, 101, 27, 80, -9, 17, 37, 18, 93, 25]
-    test_list1 = [1,2,3,4,5]
-    print(merge_sort(test_list))
+    test_list = [26, 101, 27, 80, -9, 17, 37, 18, 93, 25, 1, 2, 3]
+    test_list1 = [1, 2, 3, 4, 5]
+    bubble_sorting_optimize(test_list)
+    # print(merge_sort(test_list))
     # print(fast_sorting(test_list))
     # buket_sorting(test_list)
     # bubble_sorting()
@@ -232,4 +261,4 @@ if __name__ == "__main__":
     # print(qsort3(test_list, 0, len(test_list) - 1))
     # import timeit #统计函数执行时间
     # print(timeit.timeit("bubble_sorting", setup="from __main__ import bubble_sorting",number=1000))
-    insert_sorting(test_list)
+    # insert_sorting(test_list)
