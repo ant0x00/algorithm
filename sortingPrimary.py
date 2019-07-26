@@ -26,7 +26,9 @@ def bubble_sorting():
     str_input = input("请输入要排序的数字，数之间用空格隔开：")
     num_arr = str_input.split()
     for i in range(len(num_arr) - 1):  # 决定排序的轮次，需要 n-1 轮
-        for j in range(len(num_arr) - i - 1):  # 决定每轮要比较的次数，第 1 轮需要比较 n-1 次，2 轮需要 n-2，最后需要 1 次
+        # 决定每轮要比较的次数，第 1 轮需要比较 n-1 次，2 轮需要 n-2，最后需要 1 次
+        # i 也可以理解为已经有 i 个数已排序
+        for j in range(len(num_arr) - 1 - i):
             # 所以，时间复杂度为(n-1)*(n-2)*...* 1 = pow(n,2)
             if num_arr[j + 1] < num_arr[j]: #将最大的数冒出来，放到已排序数组的头部
                 num_arr[j], num_arr[j + 1] = num_arr[j + 1], num_arr[j]
