@@ -47,9 +47,9 @@ def heap_use_python_fun(arr):
 
 
 if __name__ == "__main__":
-    arr = [26, 101, 27, 80, -9, 8, 22]
-    # print(heapSort(arr))
+    arr = [26, 101, 27, 80, -9, 8,33]
+    print(heapSort(arr))
     # print(heap_use_python_fun(arr))
     import heapq
 
-    print(heapq.nsmallest(len(arr), arr))
+    # print(heapq.nsmallest(len(arr), arr))
