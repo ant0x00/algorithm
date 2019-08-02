@@ -52,7 +52,7 @@ def bubble_sorting_optimize(num_arr):
             # 所以，时间复杂度为(n-1)*(n-2)*...* 1 = pow(n,2)
             x = num_arr[j + 1]
             y = num_arr[j]
-            if num_arr[j] > num_arr[j + 1]:  # 将最大的数冒出来，放到已排序数组的头部
+            if int(num_arr[j]) > int(num_arr[j + 1]):  # 将最大的数冒出来，放到已排序数组的头部；字符串比较会有问题
                 num_arr[j], num_arr[j + 1] = num_arr[j + 1], num_arr[j]
                 flag = False
                 pos = j
