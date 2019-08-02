@@ -192,7 +192,8 @@ def qsort2(alist, l, u):  # 单索引原地快排one index for partion
         return
 
     m = l
-    for i in range(l + 1, u + 1):
+    for i in range(l + 1, u):
+    # for i in range(l + 1, u + 1):
         if alist[i] < alist[l]:
             m += 1
             alist[m], alist[i] = alist[i], alist[m]
@@ -202,7 +203,7 @@ def qsort2(alist, l, u):  # 单索引原地快排one index for partion
     print(m)
     print(alist)
 
-    qsort2(alist, l, m - 1)
+    qsort2(alist, l, m)
     qsort2(alist, m + 1, u)
     return alist
 
@@ -252,9 +253,10 @@ def qsort4(alist, lower, upper):  # 双索引原地快排two index for partion
 
 
 if __name__ == "__main__":
-    test_list = [26, 101, 27, 80, -9, 17, 37, 18, 93, 25, 1, 2, 3]
+    test_list = [26, 101, 27, 80, -9, 17, 37, 18, 93, 25, 1, 2, 3,-1,-2]
     test_list1 = [1, 2, 3, 4, 5]
-    bubble_sorting_optimize(test_list)
+    print(qsort2(test_list,0,len(test_list)))
+    # bubble_sorting_optimize(test_list)
     # print(merge_sort(test_list))
     # print(fast_sorting(test_list))
     # buket_sorting(test_list)
