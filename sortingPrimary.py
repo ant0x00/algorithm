@@ -207,7 +207,7 @@ def qsort2(alist, l, u):  # 单索引原地快排one index for partion
 
 def qsort3(arr, lower, upper):
     """
-    快速排序：
+    快速排序,双索引原地快排：
     思路：找一个基准元素N，然后先从右往左找第一个小于N的元素S，再由左往右找大于N的元素L，将S和L对调，再寻找，重复对调
           知道左右的坐标相遇，然后和N对调，递归。
           这种两边推进的办法，主要是提高了分区效率，减少了swap次数
@@ -256,16 +256,16 @@ def qsort4(alist, lower, upper):  # 双索引原地快排two index for partion
 
 
 if __name__ == "__main__":
-    test_list = [26, 101, 27, 80, -9, 17, 37, 18, 93, 25, 1, 2, 3,-1,-2]
+    test_list = [26, 101, 27, 80, -9, 17, 37, 18, 93, 25, 1, 2, 3,-1,-2, 888, 0]
     test_list1 = [1, 2, 3, 4, 5]
-    print(qsort2(test_list,0,len(test_list)))
+    # print(qsort2(test_list,0,len(test_list)))
     # bubble_sorting_optimize(test_list)
     # print(merge_sort(test_list))
     # print(fast_sorting(test_list))
     # buket_sorting(test_list)
     # bubble_sorting()
     # selection_sorting(test_list)
-    # print(qsort3(test_list, 0, len(test_list) - 1))
+    print(qsort3(test_list, 0, len(test_list) - 1))
     # import timeit #统计函数执行时间
     # print(timeit.timeit("bubble_sorting", setup="from __main__ import bubble_sorting",number=1000))
     # insert_sorting(test_list)
